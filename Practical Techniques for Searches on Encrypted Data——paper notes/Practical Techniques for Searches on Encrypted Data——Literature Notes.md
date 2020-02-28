@@ -99,15 +99,22 @@ Encryption and Decryption as follows.
 - Queries are not hidden, server learn word
 - Query isolation is not satisfied, server learns K and search for arbitrary word.
 
-Alice must reveal all the $k_i$(thus potentially revealing the entire document), or Alice must know in advance which locations $W$ may appear at.
+In other words, Alice must reveal all the $k_i$(thus potentially revealing the entire document), or Alice must know in advance which locations $W$ may appear at.
 
 ### Part two： Scheme II - Controlled Searching
 
-Instead of $ R_i \leftarrow F_k(L_i)$, just generate $ S_i$ where $K_i = F_k^{'}(W_i)$. $T_i := <R_i,F_{k_i}(R_i)>, where K_i = F_k{'}(W_i)$ .
+Instead of $ R_i \leftarrow F_k(L_i)$, just generate $ S_i$ where $K_i = F_k^{'}(W_i)$. 
+
+$T_i := <R_i,F_{k_i}(R_i)>, where K_i = F_k{'}(W_i)$ .
 
 So there an additional pseudorandom function: $ f : \mathcal{K}_F \times \{0,1\}^* \rightarrow \mathcal{K}_F$, using this function to choose keys as $k_i := f_{k^{'}}(W_i)$.
 
-take this idea further by using a hierarchical key management scheme. set $k_i := f_l(<0,C>)$ and $l := f_{k^{'}}(<1,W_i>)$
+And there are many different ways to generate $k_i$:
+
+- $k_i := f_{k^{'}}(<C,W>)$, where $C$ is chapter.
+- set $k_i := f_l(<0,C>)$ and $l := f_{k^{'}}(<1,W_i>)$, 
+  - for each chapter, to reveal $k_i := f_{f_{f^{'}}(<1,W>)}(<0,C>)$
+  - for all chapter, to reveal $l := f_{k^{'}}(<1,W_i>)$
 
 ### Part three: Scheme III - Hidden Searches
 
@@ -123,6 +130,13 @@ Hidden Queries schemes and improved Security(Change K):
 <img src=".\img\hidden_search.PNG" style="zoom:40%;" /> <img src=".\img\hidden_search2.PNG" style="zoom: 40%;" />
 
 ### Part four: Scheme IV - Final  Scheme
+
+in order to fix a  problem that Alice maybe bot decrypt without knowing $E_{k^{"}}(W_i)$ or last $m$ bits of it.
+
+there is a simple fix:
+
+- split the pre-encrypted word $X_i := E_{k^{"}}(W_i) $ into two parts$<L_i,R_i>$
+- Instead of generating $k_i := X_i$, generate $k_i := E_{k^{"}}(L_i)$
 
 Encryption and decryption as follows:
 
