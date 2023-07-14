@@ -1,5 +1,4 @@
 # Table of contents
 
-* [README](README.md)
-* [Cryptographic Commitment](cryptographic-commitment/README.md)
+* [Cryptographic Commitment](Commitment.md)
   * [Hyperproof](Commitment/hyperproof.md)
