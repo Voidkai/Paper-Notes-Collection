@@ -47,3 +47,17 @@ Expression table is similar to statement table.
 | n                  | 2               | /                  | /                  |       | /       |
 | $op_1$ x           | 3               |                    | /                  | /     |         |
 | $x_1$ $op_2$ $x_2$ | 4               |                    |                    | /     |         |
+
+
+### Analysis the source code
+
+worklist algorthim is the analysis state transfer algorithm used in this paper. The algorithm is as follows:
+
+
+### Proving Intra-procedure Analysis
+
+This paper divides proof of intra-procedure analysis into several parts:
+- **Control flow graph consistnecy** (By using characteristic function to check the equality of two set (CFG set and source code table presentation's set))
+- **Correct execution of the iteration**(the interation is in the worklist algorithm for traversal CFG to get the stable state of variable in source code)
+- **Memory consistency check**
+- **Lattice operation and transfer functions**
