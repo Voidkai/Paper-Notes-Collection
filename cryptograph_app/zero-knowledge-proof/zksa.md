@@ -4,6 +4,8 @@
 | -------------------------------------- | ---- | -------------------------------------------------------- | ---------- | ---------------------------------------------------------- | --------- | ----- |
 | Zero Knowledge Static Program Analysis | 2021 | Zhiyong Fang, David Darais, Joseph P. Near, Yupeng Zhang | CCS        | [Link](https://dl.acm.org/doi/abs/10.1145/3460120.3484795) |           |       |
 
+[toc]
+
 ## Summary
  This paper introduces the concept of **zero-knowledge static analysis(ZK-SA)**. This is a method where a prover constructs a zero-knowledge proof about the outcome of the static analysis without revealing the program's source code.
 
@@ -57,7 +59,17 @@ worklist algorthim is the analysis state transfer algorithm used in this paper. 
 ### Proving Intra-procedure Analysis
 
 This paper divides proof of intra-procedure analysis into several parts:
-- **Control flow graph consistnecy** (By using characteristic function to check the equality of two set (CFG set and source code table presentation's set))
+- **Control flow graph consistency** (By using characteristic function to check the equality of two set (CFG set and source code table presentation's set))
 - **Correct execution of the iteration**(the interation is in the worklist algorithm for traversal CFG to get the stable state of variable in source code)
 - **Memory consistency check**
 - **Lattice operation and transfer functions**
+
+#### Control flow graph consistency
+
+The control flow graph is a structure that exclusively retains edge data. Represented as a table, this graph consists of two primary columns: 'from' and 'to'. The 'from' column encapsulates the source node of each edge, while the 'to' column indicates the corresponding destination node. Essentially, the graph serves as a collection of these edge connections.
+
+The consistency between control flow graph and source code means the the set of edges in control flow graph is equal to the set of edges in source code. The characteristic function is used to check the equality of two sets.
+
+Set equality check for checking the consistency. The characteristic function is $h_A(x) = \Pi_{(l,l^{'})\in A}(\mathcal{H}(l,l^{'})-x)$.$\mathcal{H}(l,l^{'})=nl+l^{'}$.
+
+#### Correct execution of the iteration
