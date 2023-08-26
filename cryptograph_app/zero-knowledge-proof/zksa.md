@@ -73,3 +73,8 @@ The consistency between control flow graph and source code means the the set of 
 Set equality check for checking the consistency. The characteristic function is $h_A(x) = \Pi_{(l,l^{'})\in A}(\mathcal{H}(l,l^{'})-x)$.$\mathcal{H}(l,l^{'})=nl+l^{'}$.
 
 #### Correct execution of the iteration
+The correct execution can be divided into four parts:
+1. Executing queue operations: pop and push.
+2. Fetching instructions.
+3. Reading & writing analysis states.
+4. Extracting following flows.     
